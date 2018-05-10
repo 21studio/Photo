@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
-	public float speed;
+	//public float speed;
 	public float rotationSpeed;
-	public float horizontalSpeed;
-	public float verticalSpeed;
+	//public float horizontalSpeed;
+	//public float verticalSpeed;
 	public float mouseButtonSpeed;
 
 	public Color colorStart = Color.red;
 	public Color colorEnd = Color.green;
-	public float duration = 1.0f;
+	public float duration;
 	public Renderer rend;
 
+	public float touchSpeed = 0.1f;
+	
 	// Use this for initialization
 	void Start () {
 		rend = GetComponent<Renderer>();
@@ -22,8 +25,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () {		
 		/* 
 		float inputX = Input.GetAxisRaw ("Horizontal");
 		float velocity = inputX * speed;
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		float v = verticalSpeed * Input.GetAxis("Mouse Y");
 		transform.Rotate(v, -h, 0);
 		*/
-
+		
 		if(Input.GetMouseButton(0)) {
 			transform.Rotate(new Vector3(0,mouseButtonSpeed,0) * Time.deltaTime);	
 		}
@@ -54,8 +56,12 @@ public class PlayerController : MonoBehaviour {
 			transform.Rotate(new Vector3(0,-mouseButtonSpeed,0) * Time.deltaTime);	
 		}
 
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+			transform.Translate(-touchDeltaPosition.x * touchSpeed, -touchDeltaPosition.y * touchSpeed, 0); 
+		}
+
 		if(Input.GetKeyDown(KeyCode.Space)) {
-			//GetComponent<Rigidbody>().AddForce(Vector3.up * 300);
 			float lerp = Mathf.PingPong(Time.time, duration) / duration;
 			rend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 			//Debug.Log("now color: " + rend.material.color);
@@ -64,9 +70,13 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKey(KeyCode.R)) {
 			//transform.position = new Vector3(0,0,0);
 			//transform.Rotate(new Vector3(0,0,0));
-			transform.localEulerAngles = new Vector3(0,0,0);
-			
+			//transform.localEulerAngles = new Vector3(0,0,0);
+			SceneManager.LoadScene (1);
 		}
+
+		if (Input.GetKeyDown("escape")) {
+            	Application.Quit();
+        	}
 		
 	}
 }
