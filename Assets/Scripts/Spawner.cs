@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour {
 
 		if (Time.time > nextSpawnTime) {
 			float secondsBetweenSpawns = Mathf.Lerp (secondsBetweenSpawnsMinMax.y, secondsBetweenSpawnsMinMax.x, Difficulty.GetDifficultyPercent());
-			//Debug.Log (secondsBetweenSpawns);
+			Debug.Log (secondsBetweenSpawns);
 			nextSpawnTime = Time.time + secondsBetweenSpawns;
 			
 			float spawnAngle = Random.Range (-spawnAngleMax, spawnAngleMax);
@@ -40,8 +40,8 @@ public class Spawner : MonoBehaviour {
 			float lerp = Mathf.PingPong(Time.time, duration) / duration;
 			//rend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 			
-			newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.white, Color.black, lerp);
-			Debug.Log ("color: " + newBlock.GetComponent<MeshRenderer>().material.color );
+			newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorStart, colorEnd, lerp);
+			//Debug.Log ("color: " + newBlock.GetComponent<MeshRenderer>().material.color );
 		}
 		
 	}

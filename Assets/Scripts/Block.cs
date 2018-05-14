@@ -10,7 +10,7 @@ public class Block : MonoBehaviour {
 	float visibleHeightThreshold;
 	
 	public Color colorStart = Color.red;
-	public Color colorEnd = Color.green;
+	public Color colorEnd = Color.clear;
 	public float duration = 5.0f;
 	public Renderer blockRend;
 
@@ -28,6 +28,7 @@ public class Block : MonoBehaviour {
 		//float lerp = Mathf.PingPong(Time.time, duration) / duration;
 		//blockRend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 		
+		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
 		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
 
 		if (transform.position.y > visibleHeightThreshold) {
