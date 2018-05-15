@@ -9,7 +9,9 @@ public class Intro : MonoBehaviour {
 		SceneManager.LoadScene(1);
 	}
 
-	public void QuitGame() {
-		Application.Quit();
+	void Update() {
+		if (Input.GetKeyDown("escape")) {
+            	Application.Quit();
+        	}
 	}
 }
