@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour {
 
 		if (Time.time > nextSpawnTime) {
 			float secondsBetweenSpawns = Mathf.Lerp (secondsBetweenSpawnsMinMax.y, secondsBetweenSpawnsMinMax.x, Difficulty.GetDifficultyPercent());
-			Debug.Log (secondsBetweenSpawns);
+			//Debug.Log (secondsBetweenSpawns);
 			nextSpawnTime = Time.time + secondsBetweenSpawns;
 			
 			float spawnAngle = Random.Range (-spawnAngleMax, spawnAngleMax);
