@@ -13,6 +13,10 @@ public class ScoreManager : MonoBehaviour {
 	Plane objPlane;
 	Vector3 mO;
 
+	public CameraShake cameraShake;
+	
+	public TimeManager timeManager;
+
 	Ray GenerateMouseRay() {
 		//Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		//Debug.DrawRay(mousePos, Camera.main.transform.forward*1000, Color.green);
@@ -70,6 +74,13 @@ public class ScoreManager : MonoBehaviour {
 		}
 		else if (Input.GetMouseButtonUp(0) && gObj) {
 			gObj = null;
+		}
+
+		if(Input.GetKey(KeyCode.Space)) {
+			
+			//StartCoroutine(cameraShake.Shake(.15f, .4f));
+
+			timeManager.DoSlowmotion();
 		}
 		 
 		if (Input.touchCount > 0) {

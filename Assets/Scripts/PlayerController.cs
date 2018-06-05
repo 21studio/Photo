@@ -124,11 +124,13 @@ public class PlayerController : MonoBehaviour {
 			transform.Rotate(new Vector3(touchDeltaPosition.y * touchSpeed, -touchDeltaPosition.x * touchSpeed, 0) * Time.deltaTime, Space.World); 
 		} */
 
+		/* 
 		if(Input.GetKey(KeyCode.Space)) {
 			float lerp = Mathf.PingPong(Time.time, duration) / duration;
 			rend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
-			//Debug.Log("now color: " + rend.material.color);
-		}
+			Debug.Log("now color: " + rend.material.color);
+						
+		} */
 
 		if(Input.GetKey(KeyCode.R)) {
 			theDeathScreen.SetActive(true);			
