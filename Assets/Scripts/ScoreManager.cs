@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour {
 	public CameraShake cameraShake;
 	
 	public TimeManager timeManager;
+	public HealthSystem healthSystem;
 
 	Ray GenerateMouseRay() {
 		//Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -44,15 +45,20 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void Start () {
-		HealthSystem healthSystem = new HealthSystem(100);
-		healthText.text = healthSystem.GetHealth().ToString();
-		Debug.Log ("Health: "+healthSystem.GetHealth());
-				
+		healthSystem = new HealthSystem(100);
+		//Debug.Log ("Health: "+healthSystem.GetHealth());				
 	}
-
+	
 	void OnGUI() {
-		GUI.Button(new Rect(100, 100, 50, 50), "damage");
-		Debug.Log("Damaged");
+		if (GUI.Button(new Rect(70, 100, 50, 50), "damage")) {
+			healthSystem.Damage(10);
+			Debug.Log("Damaged");
+		}
+		
+		if (GUI.Button(new Rect(130, 100, 50, 50), "heal")) {
+			healthSystem.Heal(10);
+			Debug.Log("Heal");
+		}
 	}
 
 	// Update is called once per frame
@@ -61,6 +67,7 @@ public class ScoreManager : MonoBehaviour {
 
 		//tCount.text = Input.GetMouseButton(0).ToString();
 		tCount.text = Input.touchCount.ToString();
+		healthText.text = healthSystem.GetHealth().ToString();
 		
 		if (Input.GetMouseButtonDown(0)) {
 			Ray mouseRay = GenerateMouseRay();
