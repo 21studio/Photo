@@ -139,6 +139,12 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown("escape")) {
             	Application.Quit();
         	}
+	}
 
+	void OnTriggerEnter(Collider other) {
+		
+			Debug.Log("Block");
+			Destroy(other.gameObject);
+		
 	}
 }

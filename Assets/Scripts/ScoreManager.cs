@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour {
 	public Text scoreText;
 
 	public Text tCount;
+	public Text healthText;
 
 	GameObject gObj = null;
 	Plane objPlane;
@@ -41,7 +42,19 @@ public class ScoreManager : MonoBehaviour {
 		Ray mr = new Ray(mousePosN, mousePosF-mousePosN);
 		return mr;
 	}
-	
+
+	void Start () {
+		HealthSystem healthSystem = new HealthSystem(100);
+		healthText.text = healthSystem.GetHealth().ToString();
+		Debug.Log ("Health: "+healthSystem.GetHealth());
+				
+	}
+
+	void OnGUI() {
+		GUI.Button(new Rect(100, 100, 50, 50), "damage");
+		Debug.Log("Damaged");
+	}
+
 	// Update is called once per frame
 	void Update () {
 		scoreText.text = Mathf.RoundToInt(Time.timeSinceLevelLoad).ToString();
@@ -78,9 +91,9 @@ public class ScoreManager : MonoBehaviour {
 
 		if(Input.GetKey(KeyCode.Space)) {
 			
-			//StartCoroutine(cameraShake.Shake(.15f, .4f));
+			StartCoroutine(cameraShake.Shake(.15f, .4f));
 
-			timeManager.DoSlowmotion();
+			//timeManager.DoSlowmotion();
 		}
 		 
 		if (Input.touchCount > 0) {
