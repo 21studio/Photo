@@ -10,7 +10,6 @@ public class DeathMenu : MonoBehaviour {
 	}
 
 	public void QuitToMain() {
-		//Application.LoadLevel(introLevel);
 		SceneManager.LoadScene(0);
 	}
 }

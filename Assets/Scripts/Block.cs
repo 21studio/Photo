@@ -9,7 +9,7 @@ public class Block : MonoBehaviour {
 
 	float visibleHeightThreshold;
 	
-	public Color colorStart = Color.red;
+	public Color colorStart = Color.black;
 	public Color colorEnd = Color.clear;
 	public float duration = 5.0f;
 	public Renderer blockRend;
@@ -30,7 +30,17 @@ public class Block : MonoBehaviour {
 		
 		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
 		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
+				
+		//float enableX = Random.Range(7f, 15f);
+		//Destroy (gameObject, enableX);
 
+		//float enableX = Mathf.PingPong(1,2);
+		//float enableX = Mathf.PingPong(Time.time, duration) / duration;
+		
+		//if (enableX == 1) {
+		//	GetComponent<MeshRenderer>().enabled = false;			
+		//}
+		
 		if (transform.position.y > visibleHeightThreshold) {
 			Destroy (gameObject);
 		}

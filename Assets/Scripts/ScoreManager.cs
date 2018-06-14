@@ -19,8 +19,7 @@ public class ScoreManager : MonoBehaviour {
 
 	void GetBlock() {
 		blockCount++;
-		blockText.text = blockCount + "개";
-		
+		blockText.text = blockCount.ToString();
 	}
 
 	void Start () {
@@ -32,7 +31,7 @@ public class ScoreManager : MonoBehaviour {
 			healthBar.TakeDamage(10);
 			//GetComponent<HealthBar>().TakeDamage(10); //crash!!
 			//healthSystem.Damage(10);
-			StartCoroutine(cameraShake.Shake(.15f, .4f));			
+			StartCoroutine(cameraShake.Shake(.1f, .1f));			
 		}
 		
 		if (GUI.Button(new Rect(20, 210, 50, 50), "H")) {

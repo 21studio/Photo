@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour {
 		return mr;
 	}
 
-	// Use this for initialization
 	void Start () {
 		rend = GetComponent<Renderer>();
 		//Debug.Log("start color: " + rend.material.color);
@@ -66,8 +65,7 @@ public class PlayerController : MonoBehaviour {
 		screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
 
 		}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 		if (Input.GetMouseButtonDown(0)) {
@@ -126,7 +124,7 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetKey(KeyCode.Space)) {
 			
-			StartCoroutine(cameraShake.Shake(.15f, .4f));
+			StartCoroutine(cameraShake.Shake(.1f, .1f));
 
 			//timeManager.DoSlowmotion();
 		}
@@ -237,8 +235,10 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Block") {
+						
+			transform.localScale *= 1.0f;
 			
-			StartCoroutine(cameraShake.Shake(.15f, .4f));
+			StartCoroutine(cameraShake.Shake(.1f, .1f));
 			GameObject.Find("ScoreManager").SendMessage("GetBlock");
 			Destroy(other.gameObject);
 		}

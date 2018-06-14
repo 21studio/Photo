@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMinMax: {x: 1, y: 1.5}
-  colorStart: {r: 1, g: 0, b: 0, a: 1}
-  colorEnd: {r: 0, g: 1, b: 0, a: 1}
+  colorStart: {r: 0.8301887, g: 0.14281619, b: 0.12922749, a: 1}
+  colorEnd: {r: 0.10346207, g: 0.8773585, b: 0.2676046, a: 1}
   duration: 1
   blockRend: {fileID: 0}
