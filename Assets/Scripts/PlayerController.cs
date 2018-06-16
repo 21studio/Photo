@@ -236,11 +236,11 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Block") {
 						
-			transform.localScale *= 1.0f;
+			other.transform.localScale *= 1.2f;
 			
 			StartCoroutine(cameraShake.Shake(.1f, .1f));
-			GameObject.Find("ScoreManager").SendMessage("GetBlock");
-			Destroy(other.gameObject);
+			GameObject.Find("ScoreManager").SendMessage("GetBlock");			
+			//Destroy(other.gameObject);
 		}
 				
 	}

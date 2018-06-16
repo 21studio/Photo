@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour {
 
 	void GetBlock() {
 		blockCount++;
-		blockText.text = blockCount.ToString();
+		blockText.text = "Blocks: "+blockCount.ToString();
 	}
 
 	void Start () {
