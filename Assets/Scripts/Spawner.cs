@@ -14,7 +14,6 @@ public class Spawner : MonoBehaviour {
 	public Color colorStart = Color.red;
 	public Color colorEnd = Color.green;
 	public float duration = 1.0f;
-	public Renderer rend;
 
 	Vector2 screenHalfSizeWorldUnits;
 
@@ -37,11 +36,13 @@ public class Spawner : MonoBehaviour {
 			GameObject newBlock = (GameObject)Instantiate (blockPrefab, spawnPosition, Quaternion.Euler(Vector3.forward * spawnAngle)); // Quaternion.identity
 			newBlock.transform.localScale = Vector3.one * spawnSize;
 			
-			float lerp = Mathf.PingPong(Time.time, duration) / duration;
-			//rend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
+			//float lerp = Mathf.PingPong(Time.time, duration) / duration;
+			//newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorStart, colorEnd, lerp);
 			
-			newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorStart, colorEnd, lerp);
+			newBlock.GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
 			//Debug.Log ("color: " + newBlock.GetComponent<MeshRenderer>().material.color );
+
+			GameObject.Find("ScoreManager").SendMessage("SpawnBlock");
 		}
 		
 	}

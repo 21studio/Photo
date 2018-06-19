@@ -8,7 +8,11 @@ public class ScoreManager : MonoBehaviour {
 	public Text scoreText;
 	public Text tCount;
 	public Text healthText;
+	
 	public Text blockText;
+	public Text spawnText;
+	
+	public Text timescaleText;
 
 	public HealthBar healthBar;
 	public CameraShake cameraShake;
@@ -16,16 +20,23 @@ public class ScoreManager : MonoBehaviour {
 	//HealthSystem healthSystem = new HealthSystem(100);
 
 	int blockCount = 0;
+	int spawnCount = 0;
 
 	void GetBlock() {
 		blockCount++;
-		blockText.text = "Blocks: "+blockCount.ToString();
+		blockText.text = "Blocks: " + blockCount.ToString();
+	}
+
+	void SpawnBlock() {
+		spawnCount++;
+		spawnText.text = "Spawn: " + spawnCount.ToString();
 	}
 
 	void Start () {
 		//healthBar.Setup(healthSystem);
 	}
 	
+	/* 
 	void OnGUI() {
 		if (GUI.Button(new Rect(20, 150, 50, 50), "D")) {
 			healthBar.TakeDamage(10);
@@ -38,7 +49,7 @@ public class ScoreManager : MonoBehaviour {
 			healthBar.HealDamage(10);
 			//healthSystem.Heal(10);			
 		}
-	}
+	} */
 
 	// Update is called once per frame
 	void Update () {
@@ -46,5 +57,6 @@ public class ScoreManager : MonoBehaviour {
 		tCount.text = Input.touchCount.ToString();
 		healthText.text = healthBar.hitpoint.ToString();
 		//healthText.text = healthSystem.GetHealth().ToString();
+		timescaleText.text = Time.timeScale.ToString("N2");
 	}
 }

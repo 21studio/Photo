@@ -13,7 +13,15 @@ public class PlayerController : MonoBehaviour {
 	public Color colorStart = Color.red;
 	public Color colorEnd = Color.green;
 	public float duration;
+	
 	public Renderer rend;
+	
+	public string currentColor;
+
+	public Color colorRed;
+	public Color colorGreen;
+	public Color colorBlue;
+	public Color colorWhite;
 
 	public float touchSpeed;
 
@@ -31,6 +39,8 @@ public class PlayerController : MonoBehaviour {
 
 	public CameraShake cameraShake;
 	public TimeManager timeManager;
+	
+	public HealthBar healthBar;
 
 	Ray GenerateMouseRay() {
 		//Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,7 +68,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Start () {
-		rend = GetComponent<Renderer>();
+		SetRandomColor();
+		//rend = GetComponent<Renderer>();
 		//Debug.Log("start color: " + rend.material.color);
 
 		//float halfPlayerWidth = transform.localScale.x / 2f;
@@ -122,11 +133,13 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKey(KeyCode.Space)) {
+		if(Input.GetKeyDown(KeyCode.Space)) {
 			
-			StartCoroutine(cameraShake.Shake(.1f, .1f));
-
-			//timeManager.DoSlowmotion();
+			healthBar.HealDamage(10);
+			SetRandomColor();
+			
+			//StartCoroutine(cameraShake.Shake(.1f, .1f));
+			timeManager.DoSlowmotion();
 		}
 
 		/* 
@@ -167,13 +180,14 @@ public class PlayerController : MonoBehaviour {
 					break; 				
 			}
 		} */
-		
-		/* 
+				 
 		float inputX = Input.GetAxisRaw ("Horizontal");
-		float velocity = inputX * speed;
-		transform.Translate (Vector2.right * velocity * Time.deltaTime);
-		*/
-
+		float inputY = Input.GetAxisRaw ("Vertical");
+		float velocityX = inputX * speed;
+		float velocityY = inputY * speed;
+		transform.Translate (Vector2.right * velocityX * Time.deltaTime);
+		transform.Translate (Vector2.up * velocityY * Time.deltaTime);
+		
 		/* 
 		if (Input.touchCount > 0 || Input.GetMouseButton(0)) {
 			if (Input.mousePosition.x < Screen.width / 2) {
@@ -235,13 +249,43 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Block") {
-						
-			other.transform.localScale *= 1.2f;
+
+			//GameObject.Find("HealthBar").GetComponent<HealthBar>().TakeDamage(10);
+			healthBar.TakeDamage(10);
+
+			rend.material.color = other.GetComponent<MeshRenderer>().material.color;
+									
+			//SetRandomColor();			
+			//other.transform.localScale *= 1.2f;
 			
 			StartCoroutine(cameraShake.Shake(.1f, .1f));
 			GameObject.Find("ScoreManager").SendMessage("GetBlock");			
-			//Destroy(other.gameObject);
+			Destroy(other.gameObject);
+		}				
+	}
+
+	void SetRandomColor () {
+		int index = Random.Range(0, 4);
+		Debug.Log(index);
+
+		switch (index) 
+		{
+			case 0:
+				currentColor = "Red";
+				rend.material.color = colorRed;
+				break;
+			case 1:
+				currentColor = "Green";
+				rend.material.color = colorGreen;
+				break;
+			case 2:
+				currentColor = "Blue";
+				rend.material.color = colorBlue;
+				break;
+			case 3:
+				currentColor = "White";
+				rend.material.color = colorWhite;
+				break;
 		}
-				
 	}
 }

@@ -32,18 +32,21 @@ public class HealthBar : MonoBehaviour {
 			Debug.Log("Dead!");
 		}
 		
+		//StartCoroutine(cameraShake.Shake(.1f, .1f));
 		UpdateHealthbar();
 	}
 
 	public void HealDamage(float heal) {
 		
 		hitpoint += heal;
+		
 		if (hitpoint > maxHitpoint) {
 			hitpoint = maxHitpoint;			
 		}
-
+		
 		UpdateHealthbar();
-	}
+		
+	}	
 
 	/* 
 	private HealthSystem healthSystem;
