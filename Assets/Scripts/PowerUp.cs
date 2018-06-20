@@ -22,21 +22,25 @@ public class PowerUp : MonoBehaviour {
 		// Apply effect to the player
 		//player.transform.localScale *= multiplier;
 		
-		player.GetComponent<HealthBar>().maxHitpoint *= multiplier;
-		Debug.Log(player.GetComponent<HealthBar>().hitpoint);
-		Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
+		//player.GetComponent<HealthBar>().maxHitpoint *= multiplier;
+		//Debug.Log(player.GetComponent<HealthBar>().hitpoint);
+		//Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
 		
+		player.GetComponent<PlayerController>().speed *= multiplier;
+		Debug.Log(player.GetComponent<PlayerController>().speed);
+
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;
 
 		yield return new WaitForSeconds(duration);
 		//player.transform.localScale = new Vector3(1,1,1);
 
-		//player.GetComponent<PlayerController>().speed *= multiplier;
-				
-		player.GetComponent<HealthBar>().hitpoint *= multiplier;
-		Debug.Log(player.GetComponent<HealthBar>().hitpoint);
-		Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
+		player.GetComponent<PlayerController>().speed /= multiplier;
+		Debug.Log(player.GetComponent<PlayerController>().speed);
+
+		//player.GetComponent<HealthBar>().maxHitpoint /= multiplier;
+		//Debug.Log(player.GetComponent<HealthBar>().hitpoint);
+		//Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
 
 		Destroy(gameObject);
 	}

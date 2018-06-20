@@ -8,8 +8,8 @@ public class HealthBar : MonoBehaviour {
 	public Image currentHealthbar;
 	public Text ratioText;	
 
-	public float hitpoint = 100;
-	public float maxHitpoint = 100;
+	public float hitpoint;
+	public float maxHitpoint;
 
 	private void Start() {
 		UpdateHealthbar();
@@ -20,7 +20,6 @@ public class HealthBar : MonoBehaviour {
 		float ratio = hitpoint / maxHitpoint;
 		currentHealthbar.rectTransform.localScale = new Vector3(ratio, 1, 1);
 		ratioText.text = (ratio * 100).ToString("0") + '%';
-
 	}
 
 	public void TakeDamage(float damage) {

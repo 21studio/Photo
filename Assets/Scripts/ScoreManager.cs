@@ -13,6 +13,7 @@ public class ScoreManager : MonoBehaviour {
 	public Text spawnText;
 	
 	public Text timescaleText;
+	public Text speedText;
 
 	public HealthBar healthBar;
 	public CameraShake cameraShake;
@@ -49,8 +50,9 @@ public class ScoreManager : MonoBehaviour {
 	void Update () {
 		scoreText.text = Mathf.RoundToInt(Time.timeSinceLevelLoad).ToString();
 		tCount.text = Input.touchCount.ToString();
-		healthText.text = healthBar.hitpoint.ToString() + " / " + healthBar.maxHitpoint.ToString();
+		healthText.text = healthBar.hitpoint.ToString() + " / " + GameObject.Find("Player").GetComponent<HealthBar>().maxHitpoint.ToString();
 		//healthText.text = healthSystem.GetHealth().ToString();
 		timescaleText.text = Time.timeScale.ToString("N2");
+		speedText.text = GameObject.Find("Player").GetComponent<PlayerController>().speed.ToString();
 	}
 }
