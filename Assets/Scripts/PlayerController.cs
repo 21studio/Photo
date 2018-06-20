@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 	GameObject gObj = null;
 	Plane objPlane;
-	Vector3 mO;
+	Vector3 mO;	
 
 	public CameraShake cameraShake;
 	public TimeManager timeManager;
@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Start () {
+		
 		SetRandomColor();
 		//rend = GetComponent<Renderer>();
 		//Debug.Log("start color: " + rend.material.color);
@@ -78,6 +79,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 	void Update () {
+
+		float inputX = Input.GetAxisRaw ("Horizontal");
+		float inputY = Input.GetAxisRaw ("Vertical");
+		float velocityX = inputX * speed;
+		float velocityY = inputY * speed;
+				
+		transform.Translate (Vector2.right * velocityX * Time.deltaTime);
+		transform.Translate (Vector2.up * velocityY * Time.deltaTime);
 		
 		if (Input.GetMouseButtonDown(0)) {
 			Ray mouseRay = GenerateMouseRay();
@@ -162,7 +171,6 @@ public class PlayerController : MonoBehaviour {
 						else if (swipeValue < 0) {
 							Debug.Log ("down swipe");
 						}
-
 					}
 
 					float swipeDistHorizontal = (new Vector3(touch.position.x, 0, 0) - new Vector3(startPos.x, 0, 0)).magnitude;
@@ -180,14 +188,7 @@ public class PlayerController : MonoBehaviour {
 					break; 				
 			}
 		} */
-				 
-		float inputX = Input.GetAxisRaw ("Horizontal");
-		float inputY = Input.GetAxisRaw ("Vertical");
-		float velocityX = inputX * speed;
-		float velocityY = inputY * speed;
-		transform.Translate (Vector2.right * velocityX * Time.deltaTime);
-		transform.Translate (Vector2.up * velocityY * Time.deltaTime);
-		
+			
 		/* 
 		if (Input.touchCount > 0 || Input.GetMouseButton(0)) {
 			if (Input.mousePosition.x < Screen.width / 2) {
@@ -211,8 +212,7 @@ public class PlayerController : MonoBehaviour {
 		//float xRotation = Input.GetAxis("Vertical") * rotationSpeed * Time.deltaTime;
 		//float yRotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
 		
-		//transform.Rotate(xRotation, -yRotation, 0, Space.World);
-				
+		//transform.Rotate(xRotation, -yRotation, 0, Space.World);		
 		//transform.localEulerAngles = new Vector3(xRotation,yRotation,0);
 
 		/* 

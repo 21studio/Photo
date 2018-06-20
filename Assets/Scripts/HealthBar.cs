@@ -9,11 +9,10 @@ public class HealthBar : MonoBehaviour {
 	public Text ratioText;	
 
 	public float hitpoint = 100;
-	private float maxHitpoint = 100;
+	public float maxHitpoint = 100;
 
 	private void Start() {
 		UpdateHealthbar();
-
 	}
 
 	private void UpdateHealthbar() {
@@ -44,8 +43,7 @@ public class HealthBar : MonoBehaviour {
 			hitpoint = maxHitpoint;			
 		}
 		
-		UpdateHealthbar();
-		
+		UpdateHealthbar();		
 	}	
 
 	/* 

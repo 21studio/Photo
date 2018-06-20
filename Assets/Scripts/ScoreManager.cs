@@ -41,21 +41,15 @@ public class ScoreManager : MonoBehaviour {
 		if (GUI.Button(new Rect(20, 150, 50, 50), "D")) {
 			healthBar.TakeDamage(10);
 			//GetComponent<HealthBar>().TakeDamage(10); //crash!!
-			//healthSystem.Damage(10);
-			StartCoroutine(cameraShake.Shake(.1f, .1f));			
-		}
-		
-		if (GUI.Button(new Rect(20, 210, 50, 50), "H")) {
-			healthBar.HealDamage(10);
-			//healthSystem.Heal(10);			
-		}
+			//healthSystem.Damage(10);			
+		}		
 	} */
 
 	// Update is called once per frame
 	void Update () {
 		scoreText.text = Mathf.RoundToInt(Time.timeSinceLevelLoad).ToString();
 		tCount.text = Input.touchCount.ToString();
-		healthText.text = healthBar.hitpoint.ToString();
+		healthText.text = healthBar.hitpoint.ToString() + " / " + healthBar.maxHitpoint.ToString();
 		//healthText.text = healthSystem.GetHealth().ToString();
 		timescaleText.text = Time.timeScale.ToString("N2");
 	}
