@@ -25,4 +25,10 @@ public class CameraShake : MonoBehaviour {
 		transform.localPosition = originalPos;
 
 	}
+
+	public void DoAction () {
+		GetComponent<Camera>().backgroundColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+		GetComponent<Camera>().transform.Rotate(new Vector3(0,0,Random.Range(0, 180)));
+						
+	}
 }

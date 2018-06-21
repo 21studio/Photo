@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
 		float inputY = Input.GetAxisRaw ("Vertical");
 		float velocityX = inputX * speed;
 		float velocityY = inputY * speed;
-				
+		
 		transform.Translate (Vector2.right * velocityX * Time.deltaTime);
 		transform.Translate (Vector2.up * velocityY * Time.deltaTime);
 		
@@ -145,10 +145,10 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			
 			healthBar.HealDamage(10);
-			SetRandomColor();
-			
-			//StartCoroutine(cameraShake.Shake(.1f, .1f));
+			//SetRandomColor();
+						
 			timeManager.DoSlowmotion();
+			cameraShake.DoAction();
 		}
 
 		/* 
@@ -250,14 +250,10 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Block") {
 
-			//GameObject.Find("HealthBar").GetComponent<HealthBar>().TakeDamage(10);
 			healthBar.TakeDamage(10);
 
 			rend.material.color = other.GetComponent<MeshRenderer>().material.color;
 									
-			//SetRandomColor();			
-			//other.transform.localScale *= 1.2f;
-			
 			StartCoroutine(cameraShake.Shake(.1f, .1f));
 			GameObject.Find("ScoreManager").SendMessage("GetBlock");			
 			Destroy(other.gameObject);

@@ -16,29 +16,31 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	IEnumerator Pickup(Collider player) {
-		// Spawn a cool effect
+		
 		// Instantiate(pickupEffect, transform.position, transform.rotation);
 		
-		// Apply effect to the player
-		//player.transform.localScale *= multiplier;
-		
-		//player.GetComponent<HealthBar>().maxHitpoint *= multiplier;
-		//Debug.Log(player.GetComponent<HealthBar>().hitpoint);
-		//Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
+		player.transform.localScale *= multiplier;
 		
 		player.GetComponent<PlayerController>().speed *= multiplier;
-		Debug.Log(player.GetComponent<PlayerController>().speed);
-
+		//Debug.Log(player.GetComponent<PlayerController>().speed);
+		
+		//GameObject.Find("HealthBar").GetComponent<HealthBar>().hitpoint *= multiplier;
+		GameObject.Find("HealthBar").GetComponent<HealthBar>().maxHitpoint *= multiplier;
+		//player.GetComponent<HealthBar>().hitpoint *= multiplier;
+		
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;
 
 		yield return new WaitForSeconds(duration);
-		//player.transform.localScale = new Vector3(1,1,1);
+		
+		player.transform.localScale = new Vector3(1,1,1);
 
 		player.GetComponent<PlayerController>().speed /= multiplier;
-		Debug.Log(player.GetComponent<PlayerController>().speed);
+		//Debug.Log(player.GetComponent<PlayerController>().speed);
 
-		//player.GetComponent<HealthBar>().maxHitpoint /= multiplier;
+		//GameObject.Find("HealthBar").GetComponent<HealthBar>().hitpoint /= multiplier;
+		GameObject.Find("HealthBar").GetComponent<HealthBar>().maxHitpoint /= multiplier;
+		//player.GetComponent<HealthBar>().hitpoint /= multiplier;
 		//Debug.Log(player.GetComponent<HealthBar>().hitpoint);
 		//Debug.Log(player.GetComponent<HealthBar>().maxHitpoint);
 

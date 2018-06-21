@@ -13,8 +13,7 @@ public class Block : MonoBehaviour {
 	public Color colorEnd = Color.clear;
 	public float duration = 5.0f;
 	public Renderer blockRend;
-
-	// Use this for initialization
+	
 	void Start () {
 		blockRend = GetComponent<Renderer>();
 
@@ -23,23 +22,23 @@ public class Block : MonoBehaviour {
 		visibleHeightThreshold = Camera.main.orthographicSize + transform.localScale.y;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		//float lerp = Mathf.PingPong(Time.time, duration) / duration;
 		//blockRend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 		
 		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
 		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
-				
-		//float enableX = Random.Range(7f, 15f);
-		//Destroy (gameObject, enableX);
 
-		//float enableX = Mathf.PingPong(1,2);
-		//float enableX = Mathf.PingPong(Time.time, duration) / duration;
+		/* 		
+		float enableX = Random.Range(3f, 15f);
+		Destroy (gameObject, enableX);
+
+		float enableX = Mathf.PingPong(1,2);
+		float enableX = Mathf.PingPong(Time.time, duration) / duration;
 		
-		//if (enableX == 1) {
-		//	GetComponent<MeshRenderer>().enabled = false;			
-		//}
+		if (enableX == 1) {
+			GetComponent<MeshRenderer>().enabled = false;			
+		} */
 		
 		if (transform.position.y > visibleHeightThreshold) {
 			Destroy (gameObject);

@@ -29,8 +29,7 @@ public class HealthBar : MonoBehaviour {
 			hitpoint = 0;
 			Debug.Log("Dead!");
 		}
-		
-		//StartCoroutine(cameraShake.Shake(.1f, .1f));
+				
 		UpdateHealthbar();
 	}
 
@@ -43,7 +42,11 @@ public class HealthBar : MonoBehaviour {
 		}
 		
 		UpdateHealthbar();		
-	}	
+	}
+
+	void Update () {
+		UpdateHealthbar();
+	}
 
 	/* 
 	private HealthSystem healthSystem;
