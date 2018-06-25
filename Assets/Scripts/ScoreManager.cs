@@ -41,7 +41,7 @@ public class ScoreManager : MonoBehaviour {
 		healthText.text = GameObject.Find("HealthBar").GetComponent<HealthBar>().hitpoint.ToString() + " / " + GameObject.Find("HealthBar").GetComponent<HealthBar>().maxHitpoint.ToString();
 		//healthText.text = healthBar.hitpoint.ToString() + " / " + healthBar.maxHitpoint.ToString();
 		//healthText.text = healthSystem.GetHealth().ToString();
-		timescaleText.text = Time.timeScale.ToString("N2");
-		speedText.text = GameObject.Find("Player").GetComponent<PlayerController>().speed.ToString();
+		timescaleText.text = "TimeScale: " + Time.timeScale.ToString("N2");
+		speedText.text = "Speed: " + GameObject.Find("Player").GetComponent<PlayerController>().speed.ToString();
 	}
 }

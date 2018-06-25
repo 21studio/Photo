@@ -31,4 +31,10 @@ public class CameraShake : MonoBehaviour {
 		GetComponent<Camera>().transform.Rotate(new Vector3(0,0,Random.Range(0, 180)));
 						
 	}
+	
+	public void Reset () {
+		GetComponent<Camera>().backgroundColor = Color.black;
+		GetComponent<Camera>().transform.rotation = Quaternion.identity; 
+						
+	}
 }

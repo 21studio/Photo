@@ -84,9 +84,9 @@ public class PlayerController : MonoBehaviour {
 		float inputY = Input.GetAxisRaw ("Vertical");
 		float velocityX = inputX * speed;
 		float velocityY = inputY * speed;
-		
-		transform.Translate (Vector2.right * velocityX * Time.deltaTime);
-		transform.Translate (Vector2.up * velocityY * Time.deltaTime);
+				
+		transform.Translate (Vector2.right * velocityX * Time.deltaTime, Space.World);
+		transform.Translate (Vector2.up * velocityY * Time.deltaTime, Space.World);
 		
 		if (Input.GetMouseButtonDown(0)) {
 			Ray mouseRay = GenerateMouseRay();
@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour {
 						
 			timeManager.DoSlowmotion();
 			cameraShake.DoAction();
+			//cameraShake.Reset();
 		}
 
 		/* 
@@ -253,8 +254,10 @@ public class PlayerController : MonoBehaviour {
 			healthBar.TakeDamage(10);
 
 			rend.material.color = other.GetComponent<MeshRenderer>().material.color;
-									
+			StartCoroutine(PlayerRotate(4));			
+
 			StartCoroutine(cameraShake.Shake(.1f, .1f));
+			
 			GameObject.Find("ScoreManager").SendMessage("GetBlock");			
 			Destroy(other.gameObject);
 		}				
@@ -284,4 +287,26 @@ public class PlayerController : MonoBehaviour {
 				break;
 		}
 	}
+
+	IEnumerator PlayerRotate (float duration) {
+		
+		Vector3 originalRot = transform.localEulerAngles; 
+		
+		float elapsed = 0.0f;
+
+		while (elapsed < duration) {
+			
+			//transform.Rotate(new Vector3(0, 0, 60) );
+			transform.localEulerAngles = new Vector3(originalRot.x, originalRot.y, originalRot.z+10);
+
+			elapsed += Time.deltaTime;
+
+			yield return null;
+			//yield return new WaitForSeconds(duration);
+		}
+		
+		//transform.localEulerAngles = originalRot;
+		
+	}
+	
 }

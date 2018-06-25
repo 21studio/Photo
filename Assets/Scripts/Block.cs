@@ -22,12 +22,31 @@ public class Block : MonoBehaviour {
 		visibleHeightThreshold = Camera.main.orthographicSize + transform.localScale.y;
 	}
 	
+	void Rotate () {
+		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
+	}
+
+	void Translate () {
+		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
+	}
+
+	void Scale () {
+		Vector3 originalScale = transform.localScale;
+		float scaleSize = 1.01f;
+		transform.localScale = originalScale * scaleSize;
+		
+		if (transform.localScale.x > 1.5 ) {
+			transform.localScale = Vector3.one/2;
+		}
+	}
+
 	void Update () {
 		//float lerp = Mathf.PingPong(Time.time, duration) / duration;
 		//blockRend.material.color = Color.Lerp(colorStart, colorEnd, lerp);
 		
-		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
-		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
+		Rotate();
+		Translate();
+		Scale();
 
 		/* 		
 		float enableX = Random.Range(3f, 15f);

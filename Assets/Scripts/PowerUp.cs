@@ -33,7 +33,7 @@ public class PowerUp : MonoBehaviour {
 
 		yield return new WaitForSeconds(duration);
 		
-		player.transform.localScale = new Vector3(1,1,1);
+		player.transform.localScale = Vector3.one;
 
 		player.GetComponent<PlayerController>().speed /= multiplier;
 		//Debug.Log(player.GetComponent<PlayerController>().speed);

@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour {
 			Vector2 spawnPosition = new Vector2 (Random.Range(-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), -screenHalfSizeWorldUnits.y-spawnSize/2);
 			GameObject newBlock = (GameObject)Instantiate (blockPrefab, spawnPosition, Quaternion.Euler(Vector3.forward * spawnAngle)); // Quaternion.identity
 			newBlock.transform.localScale = Vector3.one * spawnSize;
-			
+						
 			//float lerp = Mathf.PingPong(Time.time, duration) / duration;
 			//newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorStart, colorEnd, lerp);
 			
