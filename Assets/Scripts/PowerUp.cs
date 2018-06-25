@@ -20,7 +20,7 @@ public class PowerUp : MonoBehaviour {
 		// Instantiate(pickupEffect, transform.position, transform.rotation);
 		
 		player.transform.localScale *= multiplier;
-		
+								
 		player.GetComponent<PlayerController>().speed *= multiplier;
 		//Debug.Log(player.GetComponent<PlayerController>().speed);
 		

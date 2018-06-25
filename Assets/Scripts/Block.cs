@@ -33,11 +33,9 @@ public class Block : MonoBehaviour {
 	void Scale () {
 		Vector3 originalScale = transform.localScale;
 		float scaleSize = 1.01f;
-		transform.localScale = originalScale * scaleSize;
-		
-		if (transform.localScale.x > 1.5 ) {
-			transform.localScale = Vector3.one/2;
-		}
+		//transform.localScale = originalScale * scaleSize;
+		transform.localScale = new Vector3(Mathf.PingPong(Time.time, 1f), transform.localScale.y, transform.localScale.z);
+			
 	}
 
 	void Update () {
@@ -46,7 +44,7 @@ public class Block : MonoBehaviour {
 		
 		Rotate();
 		Translate();
-		Scale();
+		//Scale();
 
 		/* 		
 		float enableX = Random.Range(3f, 15f);

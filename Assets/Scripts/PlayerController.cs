@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour {
 			healthBar.TakeDamage(10);
 
 			rend.material.color = other.GetComponent<MeshRenderer>().material.color;
-			StartCoroutine(PlayerRotate(4));			
+			//StartCoroutine(PlayerRotate(4));
 
 			StartCoroutine(cameraShake.Shake(.1f, .1f));
 			
@@ -301,11 +301,11 @@ public class PlayerController : MonoBehaviour {
 
 			elapsed += Time.deltaTime;
 
-			yield return null;
-			//yield return new WaitForSeconds(duration);
+			//yield return null;
+			yield return new WaitForSeconds(duration);
 		}
 		
-		//transform.localEulerAngles = originalRot;
+		transform.localEulerAngles = originalRot;
 		
 	}
 	

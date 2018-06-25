@@ -17,6 +17,8 @@ public class Spawner : MonoBehaviour {
 
 	Vector2 screenHalfSizeWorldUnits;
 
+	public string currentColor;
+
 	// Use this for initialization
 	void Start () {
 		screenHalfSizeWorldUnits = new Vector2 (Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
@@ -44,6 +46,8 @@ public class Spawner : MonoBehaviour {
 
 			GameObject.Find("ScoreManager").SendMessage("SpawnBlock");
 		}
+
+		transform.Rotate(new Vector3(0, 0, -10) * Time.deltaTime);		
 		
 	}
 }
