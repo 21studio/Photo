@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
 			
 			healthBar.HealDamage(10);
 			//SetRandomColor();
@@ -150,6 +150,8 @@ public class PlayerController : MonoBehaviour {
 			timeManager.DoSlowmotion();
 			cameraShake.DoAction();
 			//cameraShake.Reset();
+
+			cameraShake.DoBG();
 		}
 
 		/* 
@@ -265,7 +267,7 @@ public class PlayerController : MonoBehaviour {
 
 	void SetRandomColor () {
 		int index = Random.Range(0, 4);
-		Debug.Log(index);
+		//Debug.Log(index);
 
 		switch (index) 
 		{

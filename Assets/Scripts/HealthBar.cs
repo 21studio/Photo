@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour {
 		hitpoint -= damage;
 		if (hitpoint < 0) {
 			hitpoint = 0;
-			Debug.Log("Dead!");
+			//Debug.Log("Dead!");
 		}
 				
 		UpdateHealthbar();

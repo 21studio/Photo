@@ -16,23 +16,25 @@ public class Block : MonoBehaviour {
 	
 	void Start () {
 		blockRend = GetComponent<Renderer>();
-
+		
 		speed = Mathf.Lerp (speedMinMax.x, speedMinMax.y, Difficulty.GetDifficultyPercent());
 
 		visibleHeightThreshold = Camera.main.orthographicSize + transform.localScale.y;
 	}
 	
 	void Rotate () {
-		transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
+		//transform.Rotate(new Vector3(0, 0, 60) * Time.deltaTime);
+		transform.Rotate(0, 0, 60 * Time.deltaTime);		
 	}
 
 	void Translate () {
 		transform.Translate (Vector3.up * speed * Time.deltaTime, Space.World); // Space.Self
+		//Debug.Log(speed);
 	}
 
 	void Scale () {
-		Vector3 originalScale = transform.localScale;
-		float scaleSize = 1.01f;
+		//Vector3 originalScale = transform.localScale;
+		//float scaleSize = 1.01f;
 		//transform.localScale = originalScale * scaleSize;
 		transform.localScale = new Vector3(Mathf.PingPong(Time.time, 1f), transform.localScale.y, transform.localScale.z);
 			

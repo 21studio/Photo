@@ -40,14 +40,18 @@ public class Spawner : MonoBehaviour {
 						
 			//float lerp = Mathf.PingPong(Time.time, duration) / duration;
 			//newBlock.GetComponent<MeshRenderer>().material.color = Color.Lerp(colorStart, colorEnd, lerp);
-			
+						
 			newBlock.GetComponent<MeshRenderer>().material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
 			//Debug.Log ("color: " + newBlock.GetComponent<MeshRenderer>().material.color );
 
 			GameObject.Find("ScoreManager").SendMessage("SpawnBlock");
 		}
-
-		transform.Rotate(new Vector3(0, 0, -10) * Time.deltaTime);		
 		
+		//ChangeBG();
+		
+	}
+
+	void ChangeBG () {
+		GameObject.Find("BG").transform.Rotate(0, 0, 5 * Time.deltaTime);
 	}
 }
